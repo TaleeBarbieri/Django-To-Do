@@ -35,10 +35,10 @@ class TaskCreate(CreateView):
 class TaskUpdate(UpdateView):
     model = Task
     fields = '__all__'
-    success_url = reverse_lazy('tasks')
+    success_url = reverse_lazy('home')
 
 
 class TaskDelete(DeleteView):
     model = Task
     context_object_name = 'task'
-    success_url = reverse_lazy('tasks')
+    success_url = reverse_lazy('home')
