@@ -1,0 +1,9 @@
+<h3> Task Form </h3>
+<a href="{% url 'home' %}">Go back</a>
+
+
+<form method="POST" action="">      <!-- The POST method is to send data back to the database -->
+    {% csrf_token %}        <!-- This is to make sure that action that are done are made by the active user  -->
+    {{form.as_p}}       <!-- This is to view the task creation form in the web page-->
+    <input type="submit" value="Submit">
+</form>
