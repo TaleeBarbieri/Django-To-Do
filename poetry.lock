@@ -134,6 +134,22 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+name = "django-admin-extra-buttons"
+version = "1.5.6"
+description = "Django mixin to easily add buttons to any ModelAdmin"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "django-admin-extra-buttons-1.5.6.tar.gz", hash = "sha256:9616ae96e51cbdd60428bd5e1d2803ae0760a274ed777a56c2c3b2f23ffb872a"},
+]
+
+[package.extras]
+dev = ["autopep8", "bump2version", "check-manifest", "django", "flake8", "isort", "pep8", "pip-tools", "readme", "sphinx", "wheel"]
+docs = ["markdown-include", "mdx_gh_links", "mkdocs", "mkdocs-material", "mkdocs-material"]
+test = ["coverage", "django_webtest", "factory-boy", "pdbpp", "pyquery", "pytest", "pytest-cov", "pytest-django", "pytest-echo", "tox (>=2.3)", "wheel"]
+
+[[package]]
 name = "django-environ"
 version = "0.11.2"
 description = "A package that allows you to utilize 12factor inspired environment variables to configure your Django application."
@@ -304,4 +320,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "9b701309b2073d6ec7073fd1d99d239412bff22d5d0eddd4e0ea07f1979336cc"
+content-hash = "300a616ce09cb099c36d1b017e0cb2592e658f461a2eedb6c30e34383cf08a82"

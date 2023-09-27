@@ -9,8 +9,8 @@ class Task(models.Model):
     complete = models.BooleanField(default=False)
     create = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return self.title    # This is to make an instance into human-readable text
+    # def __str__(self):
+    #     return self.title    # This is to make an instance into human-readable text
 
     class Meta:
         ordering = ['complete']
