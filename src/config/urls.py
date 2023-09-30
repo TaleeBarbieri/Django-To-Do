@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from base.views import TaskList, TaskDetail, TaskCreate, TaskUpdate, TaskDelete, CustomLoginView
+from base.views import TaskList, TaskDetail, TaskCreate, TaskUpdate, TaskDelete, CustomLoginView, RegisterPage
 from django.contrib.auth.views import LogoutView    # This is the LogoutView without having to create a custom view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('register/', RegisterPage.as_view(), name='register'),     # This is the register user page
     path('login/', CustomLoginView.as_view(), name='login'),      # This is the page to login
     path('logout/', LogoutView.as_view(next_page='login'), name='logout'),      # This is the page to logout
     path('', TaskList.as_view(), name='home'),      # The (.as_view) is used to display a classed base view

@@ -1,0 +1,30 @@
+body{
+    background-color: #94c6e0;
+    font-family: 'Nunito', sans-serif;
+    padding
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+    {
+    font-family: 'Raleway', sans-serif;
+}
+
+a,
+p{
+    color: #4c6673;
+}
+
+
+.container{
+
+    max-width: 500px;
+    margin: auto;
+    background-color: white;
+    -webkit-box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
+    box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21)
+}
