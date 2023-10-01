@@ -1,16 +1,19 @@
 {% extends 'base/main.html' %}
-
 {% block content %}
 
+    {% block title %}<title>New Task</title>{%endblock%}
 
-<h3> Task Form </h3>
-<a href="{% url 'home' %}">Go back</a>
+<div class="header-bar">
+    <a href="{% url 'home' %}"> &#8592; Back </a>
+</div>
 
+<div class="card-body">
+    <form method="POST" action="">      <!-- The POST method is to send data back to the database -->
+        {% csrf_token %}        <!-- This is to make sure that action that are done are made by the active user  -->
+        {{form.as_p}}       <!-- This is to view the task creation form in the web page-->
+        <input class="button" type="submit" value="Submit">
+    </form>
+</div>
 
-<form method="POST" action="">      <!-- The POST method is to send data back to the database -->
-    {% csrf_token %}        <!-- This is to make sure that action that are done are made by the active user  -->
-    {{form.as_p}}       <!-- This is to view the task creation form in the web page-->
-    <input type="submit" value="Submit">
-</form>
 
 {%endblock%}

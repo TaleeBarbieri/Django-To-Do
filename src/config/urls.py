@@ -23,7 +23,7 @@ urlpatterns = [
     path('register/', RegisterPage.as_view(), name='register'),     # This is the register user page
     path('login/', CustomLoginView.as_view(), name='login'),      # This is the page to login
     path('logout/', LogoutView.as_view(next_page='login'), name='logout'),      # This is the page to logout
-    path('', TaskList.as_view(), name='home'),      # The (.as_view) is used to display a classed base view
+    path('home/', TaskList.as_view(), name='home'),      # The (.as_view) is used to display a classed base view
     path('task/<int:pk>/', TaskDetail.as_view(), name='task'),     # This will create a page to view the detail of one of the tasks with a ordered number value to it ---> (<int:pk>)
     path('task-create/', TaskCreate.as_view(), name='task-create'),     # This will create a new task form
     path('task-update/<int:pk>/', TaskUpdate.as_view(), name='task-update'),    # This will go to an existing task and allow to edit it

@@ -59,12 +59,12 @@ class RegisterPage(FormView):
 class TaskList(LoginRequiredMixin, ListView):
     model = Task        # Import Task to view it as a list in template
     context_object_name = 'tasks'       # It's the name that when called in the html page returns the above data
-    template_name = "base/task.html"
+    template_name = "base/home.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['tasks'] = context['tasks'].filter(user=self.request.user)      # This is to filter out which user can see what
-        context['count'] = context['tasks'].filter(complete=False).count()
+        context['count'] = context['tasks'].filter(complete=False).count()      # This will count the amount of not finished tasks
 
         search_input = self.request.GET.get('search-area') or ''        # Here it searches for a parameter called 'search-area' which finds in the task.html and it assigns the value 'search input' to it
         if search_input:        # This checks if the user entered something to search for
@@ -83,10 +83,10 @@ class TaskDetail(LoginRequiredMixin, DetailView):
 class TaskCreate(LoginRequiredMixin, CreateView):
     model = Task
     fields = ['title', 'description', 'complete']
-    success_url = reverse_lazy('task-create')       # This is to redirect the user to a created page
+    success_url = reverse_lazy('home')       # This is to redirect the user to a created page
 
     def form_valid(self, form):
-        form.instace.user = self.request.user       # This is to associate the specific created task to a specific user
+        form.instance.user = self.request.user       # This is to associate the specific created task to a specific user
         return super(TaskCreate, self).form_valid(form)
 
 
