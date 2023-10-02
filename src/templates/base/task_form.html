@@ -1,7 +1,7 @@
 {% extends 'base/main.html' %}
 {% block content %}
 
-    {% block title %}<title>New Task</title>{%endblock%}
+    {% block title %}<title>Task - {{task.title}}</title>{%endblock%}
 
 <div class="header-bar">
     <a href="{% url 'home' %}"> &#8592; Back </a>

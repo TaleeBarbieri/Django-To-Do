@@ -5,9 +5,9 @@ from admin_extra_buttons.api import ExtraButtonsMixin, button
 
 @admin.register(Task)  # View the (Task) section in the admin page
 class TaskAdmin(ExtraButtonsMixin, admin.ModelAdmin):
-    list_display = ('title', 'user', 'complete', 'created')
+    list_display = ('title', 'user', 'complete', 'created','due_date', )
     search_fields = ('title',)
-    list_filter = ('title', 'created',)
+    list_filter = ('title', 'created', 'due_date', )
     actions = ['mark_complete','mark_incomplete']
 
     @button(
