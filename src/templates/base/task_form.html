@@ -1,19 +1,31 @@
 {% extends 'base/main.html' %}
 {% block content %}
 
-    {% block title %}<title>Task - {{task.title}}</title>{%endblock%}
+{% block title %}<title>Task - {{ task.title }}</title>{% endblock %}
 
 <div class="header-bar">
     <a href="{% url 'home' %}"> &#8592; Back </a>
 </div>
 
-<div class="card-body">
-    <form method="POST" action="">      <!-- The POST method is to send data back to the database -->
-        {% csrf_token %}        <!-- This is to make sure that action that are done are made by the active user  -->
-        {{form.as_p}}       <!-- This is to view the task creation form in the web page-->
-        <input class="button" type="submit" value="Submit">
-    </form>
-</div>
+<form method="POST" action="" enctype="multipart/form-data">
+    <div class="card-body">
+        <h3>{{ form.title.label }}:</h3>
+        {{ form.title }}
 
+        <h3>{{ form.description.label }}:</h3>
+        {{ form.description }}
 
-{%endblock%}
+        <h3>{{ form.complete.label }}:</h3>
+        {{ form.complete }}
+
+        <h3>{{ form.due_date.label }}:</h3>
+        {{ form.due_date }}
+
+        <h1></h1>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <input class="button" type="submit" value="Submit">
+        </form>
+    </div>
+</form>
+{% endblock %}
