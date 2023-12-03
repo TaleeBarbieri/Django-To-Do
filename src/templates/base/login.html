@@ -12,8 +12,14 @@
     {% include 'base/messages.html' %}
     <form method='POST'>
         {% csrf_token %}
-        {{form.as_p}}
-        <input class="button" type="submit" value="Register">
+
+        <h3>{{ form.username.label }}:</h3>
+        {{ form.username }}
+
+        <h3>{{ form.password.label }}:</h3>
+        {{ form.password }}
+
+        <input class="button" type="submit" value="Login">
         <p> Don't have and account? <a href="{% url 'register' %}"> Register </a></p>
 
     </form>

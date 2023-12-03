@@ -28,7 +28,9 @@ from django.contrib import messages  # Django's messages tool
 
 from django import forms
 
-from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserChangeForm
+
+from .models import CustomUser
 
 from base.models import Task
 
@@ -42,9 +44,15 @@ class CustomLoginView(LoginView):
         return reverse_lazy('home')
 
 
+class CustomUserCreationForm(UserCreationForm):
+    class Meta:
+        model = CustomUser
+        fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2', 'profile_picture']
+
+
 class RegisterPage(FormView):
     template_name = 'base/register.html'
-    form_class = UserCreationForm  # This is to show which type of form it is
+    form_class = CustomUserCreationForm  # This is to show which type of form it is
     redirect_authenticated_user = True
     success_message = 'Your account has been created successfully. Now you can log in.'
     success_url = reverse_lazy('logout')
@@ -100,6 +108,7 @@ class TaskCreateForm(forms.ModelForm):
             'due_date': forms.DateInput(attrs={'type': 'date'}),
         }
 
+
 class TaskCreate(LoginRequiredMixin, CreateView):
     model = Task
     form_class = TaskCreateForm
@@ -118,6 +127,7 @@ class TaskUpdateForm(forms.ModelForm):
             'due_date': forms.DateInput(attrs={'type': 'date'}),
         }
 
+
 class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
     form_class = TaskUpdateForm
@@ -130,19 +140,17 @@ class TaskDelete(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('home')
 
 
-class EditProfileForm(forms.ModelForm):
+class EditProfileForm(UserChangeForm):
     class Meta:
-        model = User
-        fields = ['username', 'first_name', 'last_name', 'email', 'logo']
+        model = CustomUser
+        fields = ['username', 'first_name', 'last_name', 'email', 'profile_picture']
 
 
 class EditProfile(LoginRequiredMixin, UpdateView):
-    model = User
+    model = CustomUser
     form_class = EditProfileForm
     template_name = "base/edit_user.html"
     success_url = reverse_lazy('home')
 
     def get_object(self, queryset=None):
-        username = self.kwargs.get('username')
-        return User.objects.get(username=username)
-
+        return self.request.user

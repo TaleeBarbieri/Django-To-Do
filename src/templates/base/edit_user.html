@@ -11,7 +11,21 @@
 <form method="POST" action="{% url 'edit_user' user.username %}" enctype="multipart/form-data">
     <div class="card-body">
         {% csrf_token %}
-        {{ form.as_p }}
+
+        <h3>{{ form.username.label }}:</h3>
+        {{ form.username }}
+
+        <h3>{{ form.first_name.label }}:</h3>
+        {{ form.first_name }}
+
+        <h3>{{ form.last_name.label }}:</h3>
+        {{ form.last_name }}
+
+        <h3>{{ form.email.label }}:</h3>
+        {{ form.email }}
+
+        <h3>{{ form.profile_picture.label }}:</h3>
+        {{ form.profile_picture }}
         <h1></h1>
         <input class="button" type="submit" value="Submit">
     </div>
