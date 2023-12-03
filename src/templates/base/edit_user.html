@@ -1,0 +1,19 @@
+{% extends 'base/main.html' %}
+{% block content %}
+
+{% block title %}<title>Edit ({{user|title}})</title>{% endblock %}
+
+<div class="header-bar">
+    <a href="{% url 'home' %}"> &#8592; Back </a>
+</div>
+
+<h2>Edit User: {{ user.username|title }}</h2>
+<form method="POST" action="{% url 'edit_user' user.username %}" enctype="multipart/form-data">
+    <div class="card-body">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <h1></h1>
+        <input class="button" type="submit" value="Submit">
+    </div>
+</form>
+{% endblock %}

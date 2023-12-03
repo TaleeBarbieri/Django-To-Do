@@ -14,6 +14,6 @@ class Task(models.Model):
     #     return self.title    # This is to make an instance into human-readable text
 
     class Meta:
-        ordering = ['complete', ]
+        ordering = ['complete']
         # This is the order in which the data will appear to the user
         # In this case the completed tasks will show last

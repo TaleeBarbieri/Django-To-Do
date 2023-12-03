@@ -28,6 +28,8 @@ from django.contrib import messages  # Django's messages tool
 
 from django import forms
 
+from django.contrib.auth.models import User
+
 from base.models import Task
 
 
@@ -126,3 +128,21 @@ class TaskDelete(LoginRequiredMixin, DeleteView):
     model = Task
     context_object_name = 'task'
     success_url = reverse_lazy('home')
+
+
+class EditProfileForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name', 'email', 'logo']
+
+
+class EditProfile(LoginRequiredMixin, UpdateView):
+    model = User
+    form_class = EditProfileForm
+    template_name = "base/edit_user.html"
+    success_url = reverse_lazy('home')
+
+    def get_object(self, queryset=None):
+        username = self.kwargs.get('username')
+        return User.objects.get(username=username)
+

@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from base.views import TaskList, TaskDetail, TaskCreate, TaskUpdate, TaskDelete, CustomLoginView, RegisterPage
+from django.conf import settings
+from django.conf.urls.static import static
+from base.views import TaskList, TaskDetail, TaskCreate, TaskUpdate, TaskDelete, CustomLoginView, RegisterPage, EditProfile
 from django.contrib.auth.views import LogoutView    # This is the LogoutView without having to create a custom view
 
 urlpatterns = [
@@ -28,4 +30,5 @@ urlpatterns = [
     path('task-create/', TaskCreate.as_view(), name='task-create'),     # This will create a new task form
     path('task-update/<int:pk>/', TaskUpdate.as_view(), name='task-update'),    # This will go to an existing task and allow to edit it
     path('task-delete/<int:pk>/', TaskDelete.as_view(), name='task-delete'),
-]
+    path('edit_user/<str:username>/', EditProfile.as_view(), name='edit_user'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
