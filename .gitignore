@@ -1,0 +1,11 @@
+.*
+~*
+!.gitignore
+!*.example
+!.python-version
+!.pre-commit-config.yaml
+
+*.private.env.json
+
+*.sqlite3
+__pycache__
