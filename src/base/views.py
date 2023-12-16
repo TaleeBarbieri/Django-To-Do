@@ -146,7 +146,7 @@ class EditProfileForm(UserChangeForm):
         fields = ['username', 'first_name', 'last_name', 'email', 'profile_picture']
 
 
-class EditProfile(LoginRequiredMixin, UpdateView):
+class EditProfile(LoginRequiredMixin, UpdateView):      # This is the view to edit the specific user
     model = CustomUser
     form_class = EditProfileForm
     template_name = "base/edit_user.html"
