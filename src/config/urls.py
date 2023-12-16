@@ -14,12 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
 from base.views import TaskList, TaskDetail, TaskCreate, TaskUpdate, TaskDelete, CustomLoginView, RegisterPage, \
     EditProfile
 from django.contrib.auth.views import LogoutView  # This is the LogoutView without having to create a custom view
+
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
@@ -36,4 +37,5 @@ urlpatterns = [
                   # This will go to an existing task and allow to edit it
                   path('task-delete/<int:pk>/', TaskDelete.as_view(), name='task-delete'),
                   path('edit_user/<str:username>/', EditProfile.as_view(), name='edit_user'),
+                  path('', include('social_django.urls', namespace='social')),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

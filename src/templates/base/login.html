@@ -19,8 +19,12 @@
         <h3>{{ form.password.label }}:</h3>
         {{ form.password }}
 
-        <input class="button" type="submit" value="Login">
-        <p> Don't have and account? <a href="{% url 'register' %}"> Register </a></p>
+        <input class="button" type="submit" value="Log In">
+        <a href="{% url 'social:begin' 'google-oauth2' %}?next='home/'" class="g-signin2">
+            <img src="https://static.vecteezy.com/system/resources/previews/022/484/503/non_2x/google-lens-icon-logo-symbol-free-png.png" alt="Google Logo"> Login with Google
+        </a>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <p> Don't have and account? <a href="{% url 'register' %} " class="register-link">Register</a></p>
 
     </form>
 </div>

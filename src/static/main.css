@@ -174,14 +174,21 @@ p{
 
 
 input[type=text],
-input[type-password],
-textarea{
-    border: 2px solid #EB796F
-    border-radius: 5px;
+textarea {
+    border: 2px solid #EB796F;
+    border-radius: 10px;
     padding: 10px;
     width: 90%;
-    border-radius: 10px 10px 10px 10px;
 }
+
+input[type=password],
+ textarea {
+    border: 2px solid #EB796F;
+    border-radius: 10px;
+    padding: 10px;
+    width: 50%;
+}
+
 
 
 label{
@@ -194,7 +201,7 @@ label{
     background-color: white;
     color: #EB796F;
     padding: 10px;
-    font-size: 14px;
+    font-size: 17px;
     border-radius: 5px;
     cursor: pointer;
     text-decoration: none;
@@ -218,10 +225,48 @@ label{
 
 }
 
+.register-link{
+    text-decoration: underline;
+}
 /* Use a media query to add a breakpoint at 800px: */
 @media screen and (max-width: 800px) {
   .footer{
     width: 100%;
     left: 0;
   }
+}
+
+
+.g-signin2 {
+  display: inline-flex;
+  background-color: #F2F2F2;
+  color: #1F1F1F;
+  border-radius: 30px;
+  border: 1px solid #747775;
+  padding: 10px 24px;
+  font: Roboto Medium:
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: all 0.5s;
+}
+
+.g-signin2:hover{
+    transform: scale(1.1);
+}
+
+/* Remove default link styling */
+a {
+  padding-top: 5px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.g-signin2 img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  background-color: #F2F2F2;
+  vertical-align: middle;
 }
