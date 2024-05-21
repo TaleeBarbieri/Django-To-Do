@@ -1,20 +1,40 @@
-Development environment setup
+# **Development environment setup**
 
 
-Prerequisites
+## Prerequisites:
 
-direnv and pyenv installed in your system. Ensure shell hooks are installed before proceeding! Alternatives are possible, see below.
+- Direnv and Pyenv installed in your system. Ensure shell hooks are installed before proceeding! Alternatives are possible, see below.
 
-Install python binaries with pyenv (see Install python binaries and poetry in Details section).
-Create an empty postgres database (eg. "krm3").
-Copy .env.example and .envrc.example in equivalent .env and .envrc (which are NOT versioned as they may contain secrets).
-Amend local .env (and .envrc as needed). Most importantly set the KRM3_DATABASE_URL pointing to you database.
-Run direnv allow (needed each time you modify .envrc or you want to reload the .env).
-cd && cd - && poetry install
+- Install python binaries with pyenv (see Install python binaries and poetry in Details section).
 
+- Copy and .envrc.example in equivalent .envrc (which are NOT versioned as they may contain secrets).
+
+- Run direnv allow (needed each time you modify .envrc).
+
+- cd && cd - && poetry install
+
+
+
+# **Details**
+
+Install python binaries and poetry
+Installation in one line: 
+
+        export NEEDED_VER=`head -1 .python-version`
+        mkdir /tmp/t ; cd /tmp/t ; pyenv install $NEEDED_VER ; pyenv local 3.12.1; pip install -U pip poetry
+        
+Explanation:
+We user a temporary folder from where to:
+
+1. install needed python version (whatever version needed from .python-version)
+2. point to the newly installed binaries
+3. Upgrade pip to latest version and install latest version of poetry
+4. ONLY ONCE per system (not per binaries) set poetry to create virtualenvens in a local .venv folder: poetry config virtualenvs.in-project true
 
 
 Now you should have a fully working environment
+
+# **Sample Images:**
 
 ![Screenshot from 2024-05-21 18-33-45](https://github.com/TaleeBarbieri/Django-To-Do/assets/115103838/4df99821-f604-4a8f-9ce0-36ec485ed0d8)
 ![Screenshot from 2024-05-21 18-33-53](https://github.com/TaleeBarbieri/Django-To-Do/assets/115103838/ffcd9227-f416-4425-b65c-ae287d0737d7)
