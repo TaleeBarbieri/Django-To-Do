@@ -1,4 +1,4 @@
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 
 from django.views.generic.list import ListView  # To render tasks as a list
 
@@ -13,7 +13,7 @@ from django.views.generic.edit import \
 
 from django.urls import reverse_lazy  # Made to create URLs for views in a flexible manner
 
-from django.contrib.auth.views import LoginView  # This if for viewing the login page
+from django.contrib.auth.views import LoginView, PasswordChangeView  # This if for viewing the login page
 
 from django.contrib.auth.mixins import \
     LoginRequiredMixin  # This will make it so you are forced to login or else it redirects you
@@ -60,7 +60,8 @@ class RegisterPage(FormView):
     def form_valid(self, form):
         user = form.save()  # This will get the new created user and save it
         if user is not None:
-            login(self.request, user)  # Here we log the new user in
+            backend = 'django.contrib.auth.backends.ModelBackend'
+            login(self.request, user, backend=backend)  # Here we log the new user in
             messages.success(self.request, self.success_message)  # This shows a success message in the login page
         return super(RegisterPage, self).form_valid(form)  # super() is used to get data from another class
 
@@ -146,7 +147,7 @@ class EditProfileForm(UserChangeForm):
         fields = ['username', 'first_name', 'last_name', 'email', 'profile_picture']
 
 
-class EditProfile(LoginRequiredMixin, UpdateView):      # This is the view to edit the specific user
+class EditProfile(LoginRequiredMixin, UpdateView):  # This is the view to edit the specific user
     model = CustomUser
     form_class = EditProfileForm
     template_name = "base/edit_user.html"
@@ -154,3 +155,11 @@ class EditProfile(LoginRequiredMixin, UpdateView):      # This is the view to ed
 
     def get_object(self, queryset=None):
         return self.request.user
+
+
+class PasswordsChangeView(PasswordChangeView):
+    from_class = PasswordChangeView
+    success_url = reverse_lazy('password_change_done')
+
+    def password_success(request):
+        return render(request, 'base/change_password_done.html', {})
